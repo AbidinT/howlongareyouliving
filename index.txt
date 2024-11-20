@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>takvimden yaş hesaplama</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      body {
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h4>Doğum Tarihi</h4>
+      <input id="tarih" type="date" />
+      <button title="Tarih seç ve tıkla" onclick="hesap()" <i class="fa-solid fa-check"></i> Hesapla</button>
+    </div>
+    <br /><br />
+    <div title="Yaş Hesaplandı" id="alan"></div>
+    <div id="sekiz" title="Gün Hesaplandı"></div>
+    <div id="haftacik" title="hafta hesaplandı"></div>
+    <script>
+      function hesap() {
+        var renk=document.querySelector(".fa-solid");
+        renk.style.color="red";
+        renk.style.backgroundColor="rgb(6, 9, 51)";
+        var x = document.getElementById("tarih").value;
+        var y = new Date();
+        var k = new Date(x);
+        var kk=k.getDay();
+        k.setHours(0,0,0,0);
+        y.setHours(0,0,0,0);
+        const timeDiff = Math.abs(y.getTime() - k.getTime());
+        const weeksDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 7));
+        const dayDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        console.log(weeksDiff+" hafta önce");
+        console.log(x);
+        console.log(x.substring(9,10));
+        var t=document.getElementById("sekiz");
+        var hft=document.getElementById("haftacik");
+        var gunler=["Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazartesi"];
+        
+        console.log(x.substring(0, 4));
+        console.log(x.substring(5, 7));
+        var z = document.querySelector("#alan");
+        if (y.getFullYear() == x.substring(0, 4)) {
+          z.innerHTML = "0 yaşında";
+        } else if (y.getFullYear() > x.substring(0, 4)) {
+          z.innerHTML = y.getFullYear() - x.substring(0, 4) + " yaşındasınız";
+          t.innerHTML=gunler[kk-1]+" Günü Doğdunuz";
+          hft.innerHTML=dayDiff+" gün ve "+weeksDiff+" hafta önce";
+        }
+      }
+    </script>
+  </body>
+</html>
