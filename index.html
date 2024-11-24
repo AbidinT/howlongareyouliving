@@ -30,6 +30,7 @@
         var y = new Date();
         var k = new Date(x);
         var kk=k.getDay();
+        console.log("gün:"+kk);
         k.setHours(0,0,0,0);
         y.setHours(0,0,0,0);
         const timeDiff = Math.abs(y.getTime() - k.getTime());
@@ -49,7 +50,11 @@
           z.innerHTML = "0 yaşında";
         } else if (y.getFullYear() > x.substring(0, 4)) {
           z.innerHTML = y.getFullYear() - x.substring(0, 4) + " yaşındasınız";
+          if(kk==0){
+            t.innerHTML="Pazar Günü Doğdunuz";
+          }else {
           t.innerHTML=gunler[kk-1]+" Günü Doğdunuz";
+        }
           hft.innerHTML=dayDiff+" gün ve "+weeksDiff+" hafta önce";
         }
       }
